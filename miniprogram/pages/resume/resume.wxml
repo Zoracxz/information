@@ -1,0 +1,17 @@
+<view class="cu-bar bg-white solid-bottom">
+  <view class="action">
+    <text class="cuIcon-title text-orange "></text> 上传简历附件
+  </view>
+</view>
+<view class="cu-list menu card-menu card-menu margin-top">
+  <view class="cu-item">
+    <view class="content">
+      <text class="cuIcon-btn text-green"></text>
+      <text class="text-grey">附件简历</text>
+    </view>
+    <view class="action">
+      <button class="cu-btn round bg-green shadow" bindtap="upload_resume">
+        <text class="cuIcon-upload"></text> 上传</button>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "tabbar": "/components/tabbar/tabbar",
+    "searchbar": "/components/searchbar/searchbar",
+    "menu": "/components/menu/menu"
+  },
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 100
+}

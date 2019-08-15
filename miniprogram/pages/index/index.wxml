@@ -1,0 +1,19 @@
+<searchbar isnavigator="{{true}}"></searchbar>
+
+<view class='container' wx:if="{{identity<=1}}">
+  <swiper class="card-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
+    <swiper-item wx:for="{{swiperList}}" wx:key class="{{cardCur==index?'cur':''}}">
+      <view class="swiper-item">
+        <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
+        <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
+      </view>
+    </swiper-item>
+  </swiper>
+  <menu indexmenu="{{indexmenu}}"></menu>
+  <button bindgetuserinfo="add_user" open-type="getUserInfo">add_user</button>
+</view>
+<view wx:else>
+
+</view>
+
+<tabbar Index="0"></tabbar>

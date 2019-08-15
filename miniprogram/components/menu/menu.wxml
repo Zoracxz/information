@@ -1,0 +1,6 @@
+<view class="index-menu">
+  <navigator class="index-menu-item" wx:for="{{indexmenu}}" wx:key="{{item.url}}" url="../{{item.url}}/{{item.url}}">
+    <icon type="{{item.url}}" color="#3CAFD8" size="80"/>
+    <text>{{item.text}}</text>
+  </navigator>
+</view>

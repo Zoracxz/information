@@ -1,0 +1,66 @@
+<tabbar Index="2"></tabbar>
+<view class='user'>
+  <view class='name bg-gradual-pink padding radius text-center shadow-blur'>
+    <image src='{{avatarUrl}}'></image>
+    <view class='describe'>
+      <text class='text-lg'>{{username}}</text>
+      <text class="margin-top-sm text-Abc">{{userInfo.introduction}}</text>
+    </view>
+  </view>
+
+  
+
+  <view class='box'>
+    <view wx:if="{{identity<=1}}" class='item' data-openid='{{openid}}' bindtap='goMyresume'>
+      <view class='item-inner'>
+        <view> 我的简历</view>
+      </view>
+      <icon type="gengduo" color="#000000" size="45"/>
+    </view>
+    <view class='item' data-openid='{{openid}}' bindtap='goRelease'>
+      <view class='item-inner'>
+        <view> 我的发布</view>
+      </view>
+      <icon type="gengduo" color="#000000" size="45"/>
+    </view>
+    <view class='item'>
+      <view class='item-inner'  bindtap='addToMyapp'>
+        <view> 添加到我的小程序</view>
+      </view>
+      <icon type="gengduo" color="#000000" size="45"/>
+    </view>
+    <!-- <view class='item'>
+      <view class='item-inner contact-me'>
+        <button open-type="contact" bindcontact="handleContact">联系开发者</button>
+      </view>
+      <icon type="gengduo" color="#000000" size="45"/>
+    </view> -->
+    <view wx:if="{{identity<=1}}" class='item' data-openid='{{openid}}' bindtap='goCollection'>
+      <view class='item-inner'>
+        <view> 职位收藏</view>
+      </view>
+      <icon type="gengduo" color="#000000" size="45"/>
+    </view>
+    <view class='item' data-openid='{{openid}}' bindtap='goFollow'>
+      <view class='item-inner'>
+        <view> 关注企业</view>
+      </view>
+      <icon type="gengduo" color="#000000" size="45"/>
+    </view>
+    <view class='item' data-openid='{{openid}}' bindtap='goSuggest'>
+      <view class='item-inner'>
+        <view> 建议反馈</view>
+      </view>
+      <icon type="gengduo" color="#000000" size="45"/>
+    </view>
+    <view wx:if="{{identity<=1}}" class='item' data-openid='{{openid}}' bindtap='goRecruit'>
+      <view class='item-inner'>
+        <view> 我要招人</view>
+      </view>
+      <icon type="gengduo" color="#000000" size="45"/>
+    </view>
+    <view class='addApp' wx:if="{{showImg}}" bindtap='hideImg' >
+      <image src='/images/add_app.png' ></image>
+    </view>
+  </view>
+</view>

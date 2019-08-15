@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "subSend": "/components/subSend/subSend"
+  }
+}
