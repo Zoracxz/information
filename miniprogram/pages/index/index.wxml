@@ -1,3 +1,8 @@
+<return bgColor="#3CAFD8">
+  <view slot="content">
+    <text>职翼</text>
+  </view>
+</return>
 <searchbar isnavigator="{{true}}"></searchbar>
 
 <view class='container' wx:if="{{identity<=1}}">
@@ -12,8 +17,10 @@
   <menu indexmenu="{{indexmenu}}"></menu>
   <button bindgetuserinfo="add_user" open-type="getUserInfo">add_user</button>
 </view>
-<view wx:else>
-
+<view wx:else class="flex">
+  <view class="outer"></view>
+  <button class="flex-sub padding-sm margin-xs  cu-btn round line-blue lg">退出登录</button>
+  <button class="flex-sub padding-sm margin-xs  cu-btn round bg-blue lg" bindtap="enterCompany">加入公司</button>
 </view>
 
 <tabbar Index="0"></tabbar>

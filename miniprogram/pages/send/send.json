@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "subSend": "/components/subSend/subSend"
+    "subSend": "/components/subSend/subSend",
+    "tabbar": "/components/tabbar/tabbar"
   }
 }

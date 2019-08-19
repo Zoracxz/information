@@ -1,5 +1,5 @@
 <!--components/tabbar/tabbar.wxml-->
-<view class="weibo-tabbar" >
+<view class="tabbar" >
     <view class="item-left"  bindtap="goHome" data-hi="{{Index}}">
       <icon type="shouye" color="{{Index==0?'#000000':'#b1b1b1'}}" size="45"/>
       <text class="1" style="color:{{Index==0?'#000000':'#b1b1b1'}}">首页</text>

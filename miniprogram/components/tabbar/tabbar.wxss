@@ -1,4 +1,4 @@
-.weibo-tabbar {
+.tabbar {
     z-index: 99;
     bottom: 0;
     height: 97rpx;
@@ -9,7 +9,7 @@
     background: #ffffff;
     box-sizing: border-box;
 }
-.weibo-tabbar::after {
+.tabbar::after {
     content: "";
     position: absolute;
     width: 200%;
@@ -20,7 +20,7 @@
     transform: scale(0.5);
     transform-origin: 0 0;
   }
-  .weibo-tabbar .item-left, .item-right{
+  .tabbar .item-left, .item-right{
     z-index: 99;
     width: 50%;
     display: flex;

@@ -166,6 +166,13 @@ Page({
     this.setData({
       swiperList: list
     })
+  },
+  enterCompany(){
+    wx.redirectTo({
+      url: '/pages/addCompany/addCompany',
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
   }
-  
 })
