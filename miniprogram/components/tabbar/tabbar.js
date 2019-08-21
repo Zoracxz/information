@@ -5,7 +5,7 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    Index: { // 是否主页            
+    Index: { // 当前页          
       type: Number,
       value: 0,
     },
@@ -25,7 +25,6 @@ Component({
     // 这里是一个自定义方法
     goHome: (e) => {
       // 判断是否为主页面防止原地跳转
-      // console.log(e)
       if (e.currentTarget.dataset.hi != 0) {
         wx.reLaunch({
           url: "/pages/index/index"
@@ -33,9 +32,12 @@ Component({
       }
     },
     goSend: (e) => {
-      wx.redirectTo({
-        url: "/pages/send/send"
-      })
+      if (e.currentTarget.dataset.hi != 1) {
+        wx.redirectTo({
+          url: "/pages/send/send"
+        })
+      }
+      
     },
     goMy: (e) => {
       if (app.globalData.isLogin != "isLogin") {
@@ -44,9 +46,12 @@ Component({
         })
         return;
       }else{
-        wx.redirectTo({
-          url: "/pages/my/my"
-        })
+        if (e.currentTarget.dataset.hi != 2) {
+          wx.redirectTo({
+            url: "/pages/my/my"
+          })
+        }
+        
       }
     },
   }

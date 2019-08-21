@@ -1,4 +1,5 @@
 // pages/send/send.js
+const app = getApp();
 Page({
 
   /**
@@ -7,7 +8,8 @@ Page({
   data: {
     TabCur: 0,
     tabList: [],
-    identity: 0
+    identity: 0,
+    r_delivery: []
   },
 
   /**
@@ -40,10 +42,29 @@ Page({
         ]
       })
     }
+    this.fetchData()
   },
   tabSelect(e) {
     this.setData({
       TabCur: e.currentTarget.dataset.id
+    })
+  },
+
+  fetchData: function(e){
+    wx.cloud.callFunction({
+      // 声明调用的函数名
+      name: 'search_send',
+      data: {
+        status: this.data.TabCur,
+        _openid: app.globalData.openid
+      }
+    }).then(res => {
+      let r_delivery = res.result.data[0].r_delivery
+      this.setData({
+        r_delivery: r_delivery
+      })
+    }).catch(err => {
+      console.log(err)
     })
   },
   /**

@@ -168,11 +168,8 @@ Page({
     })
   },
   enterCompany(){
-    wx.redirectTo({
-      url: '/pages/addCompany/addCompany',
-      success: function(res) {},
-      fail: function(res) {},
-      complete: function(res) {},
+    wx.navigateTo({
+      url: `/pages/addCompany/addCompany`,
     })
   }
 })

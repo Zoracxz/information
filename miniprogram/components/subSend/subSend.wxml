@@ -1,2 +1,7 @@
-<!--components/subSend/subSend.wxml-->
-<text>components/subSend/subSend.wxml</text>
+<view class="cu-item">
+  <view class="content">
+    <image src="{{imgUrl}}" class="png" mode="aspectFit"></image>
+    <text class="text-grey"></text>
+    <slot name="title"></slot>
+  </view>
+</view>

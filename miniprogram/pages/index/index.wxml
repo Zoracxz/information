@@ -1,4 +1,4 @@
-<return bgColor="#3CAFD8">
+<return bgColor="bg-gradual-blue">
   <view slot="content">
     <text>职翼</text>
   </view>

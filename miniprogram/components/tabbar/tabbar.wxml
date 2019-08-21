@@ -8,8 +8,8 @@
       <icon type="toudi" color="{{Index==1?'#000000':'#b1b1b1'}}" size="45"/>
       <text class="2">投递</text>
     </view>
-     <view class="item-right"  bindtap="goMy" >
-        <icon type="wode" color="{{Index==2?'#000000':'#b1b1b1'}}" size="45" data-hi="{{Index}}"/>
+     <view class="item-right"  bindtap="goMy" data-hi="{{Index}}">
+        <icon type="wode" color="{{Index==2?'#000000':'#b1b1b1'}}" size="45"/>
         <text class="3" style="color:{{Index==2?'#000000':'#b1b1b1'}}">我的</text>
       </view>
 </view>

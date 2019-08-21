@@ -1,3 +1,7 @@
+<return bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">我的简历</view>
+</return>
 <view class="cu-bar bg-white solid-bottom">
   <view class="action">
     <text class="cuIcon-title text-orange "></text> 上传简历附件

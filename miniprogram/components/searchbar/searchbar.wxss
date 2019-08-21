@@ -1,5 +1,4 @@
 .searchbar{
-  background-color: #3CAFD8;
   padding: 20rpx;
 }
 
