@@ -9,7 +9,12 @@
     {{tabList[index]}}
   </view>
 </scroll-view>
-<scroll-view scroll-y class="">
-  <!-- <subSend wx:for=""></subSend> -->
+<scroll-view scroll-y class="" wx:for="{{r_delivery}}" wx:key>
+  <view class="cu-item">
+  <view class="content">
+    <image src="../images/add_app.png" class="png" mode="aspectFit"></image>
+    <text class="text-grey">test</text>
+  </view>
+</view>
 </scroll-view>
 

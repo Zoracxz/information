@@ -4,7 +4,8 @@ Component({
    * 组件的一些选项
    */
   options: {
-    addGlobalClass: true
+    addGlobalClass: true,
+    multipleSlots: true
   },
   /**
    * 组件的属性列表
