@@ -1,6 +1,6 @@
 
 <tabbar Index="2"></tabbar>
-<view class='user'>
+<scroll-view scroll-y class="scrollPage user">
   <view class='name bg-gradual-pink padding radius text-center shadow-blur'>
     <image src='{{avatarUrl}}'></image>
     <view class='describe'>
@@ -8,60 +8,62 @@
       <text class="margin-top-sm text-Abc">{{userInfo.introduction}}</text>
     </view>
   </view>
-
-  
-
-  <view class='box'>
-    <view wx:if="{{identity<=1}}" class='item' data-openid='{{openid}}' bindtap='goMyresume'>
-      <view class='item-inner'>
-        <view> 我的简历</view>
-      </view>
-      <icon type="gengduo" color="#000000" size="45"/>
+  <view class="padding flex text-center text-grey bg-white shadow-warp">
+    <view class="flex flex-sub flex-direction solid-right">
+      <view class="text-xxl text-orange">{{visitTotal}}</view>
+      <view class="margin-top-sm">
+        <text class="cuIcon-attentionfill"></text> View</view>
     </view>
-    <view class='item' data-openid='{{openid}}' bindtap='goRelease'>
-      <view class='item-inner'>
-        <view> 我的发布</view>
-      </view>
-      <icon type="gengduo" color="#000000" size="45"/>
+    <view class="flex flex-sub flex-direction solid-right">
+      <view class="text-xxl text-blue">{{fansTotal}}</view>
+      <view class="margin-top-sm">
+        <text class="cuIcon-favorfill"></text> Follow</view>
     </view>
-    <view class='item'>
-      <view class='item-inner'  bindtap='addToMyapp'>
-        <view> 添加到我的小程序</view>
+  </view>
+  <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
+    <view wx:if="{{identity<=1}}" class='cu-item arrow' data-openid='{{openid}}' bindtap='goMyresume'>
+      <view class='content'>
+        <text class="text-grey">我的简历</text>
       </view>
-      <icon type="gengduo" color="#000000" size="45"/>
     </view>
-    <!-- <view class='item'>
-      <view class='item-inner contact-me'>
+    <view class='cu-item arrow' data-openid='{{openid}}' bindtap='goRelease'>
+      <view class='content'>
+        <text class="text-grey">我的发布</text>
+      </view>
+    </view>
+    <view class='cu-item arrow'>
+      <view class='content'  bindtap='addToMyapp'>
+        <text class="text-grey">添加到我的小程序</text>
+      </view>
+    </view>
+    <!-- <view class='cu-item arrow'>
+      <view class='content contact-me'>
         <button open-type="contact" bindcontact="handleContact">联系开发者</button>
       </view>
-      <icon type="gengduo" color="#000000" size="45"/>
     </view> -->
-    <view wx:if="{{identity<=1}}" class='item' data-openid='{{openid}}' bindtap='goCollection'>
-      <view class='item-inner'>
-        <view> 职位收藏</view>
+    <view wx:if="{{identity<=1}}" class='cu-item arrow' data-openid='{{openid}}' bindtap='goCollection'>
+      <view class='content'>
+        <text class="text-grey">我的收藏</text>
       </view>
-      <icon type="gengduo" color="#000000" size="45"/>
     </view>
-    <view class='item' data-openid='{{openid}}' bindtap='goFollow'>
-      <view class='item-inner'>
-        <view> 关注企业</view>
+    <view class='cu-item arrow' data-openid='{{openid}}' bindtap='goFollow'>
+      <view class='content'>
+        <text class="text-grey">关注企业</text>
       </view>
-      <icon type="gengduo" color="#000000" size="45"/>
     </view>
-    <view class='item' data-openid='{{openid}}' bindtap='goSuggest'>
-      <view class='item-inner'>
-        <view> 建议反馈</view>
-      </view>
-      <icon type="gengduo" color="#000000" size="45"/>
+    <view class="cu-item arrow">
+      <button class="cu-btn content" open-type="feedback">
+        <text class="text-grey">意见反馈</text>
+      </button>
     </view>
-    <view wx:if="{{identity<=1}}" class='item' data-openid='{{openid}}' bindtap='goRecruit'>
-      <view class='item-inner'>
-        <view> 我要招人</view>
+    <view wx:if="{{identity<=1}}" class='cu-item arrow' data-openid='{{openid}}' bindtap='goRecruit'>
+      <view class='content'>
+        <text class="text-grey">我要招人</text>
       </view>
-      <icon type="gengduo" color="#000000" size="45"/>
     </view>
     <view class='addApp' wx:if="{{showImg}}" bindtap='hideImg' >
       <image src='/images/add_app.png' ></image>
     </view>
   </view>
-</view>
+  <view class="cu-tabbar-height"></view>
+</scroll-view>

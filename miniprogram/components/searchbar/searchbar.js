@@ -27,6 +27,15 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    onInputEvent(e) {
+      wx.cloud.callFunction({
+        name: 'search_info',
+        data: {
+          title: e.detail.value
+        }
+      }).then(res => {
+        this.triggerEvent('searchinput', { result: res.result });
+      })
+    }
   }
 })

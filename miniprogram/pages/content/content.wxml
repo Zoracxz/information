@@ -1,0 +1,8 @@
+<!--pages/content/content.wxml-->
+<return bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">{{title}}</view>
+</return>
+<scroll-view scroll-y class="scrollPage">
+  <card resources="{{resources}}"></card>
+</scroll-view>

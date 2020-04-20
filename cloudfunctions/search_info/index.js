@@ -6,6 +6,8 @@ cloud.init()
 // 云函数入口函数
 exports.main = async (event, context) => {
   const db = cloud.database()
+  const $ = db.command.aggregate
+  const _ = db.command
   const informations = db.collection("informations")
   let r_id = event.r_id
   let type = event.type
@@ -15,27 +17,59 @@ exports.main = async (event, context) => {
   let result = []
   //按类型查询
   if (type && typeof (type) != "undefined"){
-    await informations.where({
+    type = parseInt(type)
+    await informations.aggregate().match({
       type: type
-    }).orderBy('deadline','asc').get().then(res => {
-      result = res.data
-    }).catch(err => {
-      console.log(err)
-    })
-    console.log(result)
+    }).sort({
+      deadline: -1
+    }).lookup({
+      from: 'company',
+      let: {
+        company_id: '$c_id',
+        info_type: '$type'
+      },
+      pipeline: $.pipeline()
+        .match(_.expr($.eq(['$_id', '$$company_id'])))
+        .project({
+          _id: 0,
+          icon: 1,
+          company_name: 1,
+          type: 1,
+          p_numbers: 1
+        })
+        .done(),
+      as: 'c_info',
+    }).end().then(res => {
+      result = res.list
+    }).catch(err => console.error(err))
     //按标题查询
   }else if(title && typeof(title) != "undefined"){
-    await informations.where({
+    let regexp = '^(.*' + title + '.*)$'
+    await informations.aggregate().match({
       title: db.RegExp({
         regexp: '^(.*' + title + '.*)$',
-        option: 'i'
+        options: 'i'
       })
-    }).get().then(res => {
-      result = res.data;
-    }).catch(err => {
-      console.log(err)
-    })
-    console.log(result)
+    }).lookup({
+      from: 'company',
+      let: {
+        company_id: '$c_id',
+        info_type: '$type'
+      },
+      pipeline: $.pipeline()
+        .match(_.expr($.eq(['$_id', '$$company_id'])))
+        .project({
+          _id: 0,
+          icon: 1,
+          company_name: 1,
+          type: 1,
+          p_numbers: 1
+        })
+        .done(),
+      as: 'c_info',
+    }).end().then(res => {
+      result = res.list
+    }).catch(err => console.error(err))
   } else if (r_id && typeof (r_id) != "undefined"){
     //根据id精确查询
     await informations.doc(r_id).get().then(res => {

@@ -1,0 +1,58 @@
+<scroll-view scroll-y class="DrawerPage {{modalName=='viewModal'?'show':''}}">
+  <return bgColor="bg-gradual-blue" isBack="{{true}}">
+    <view slot="backText">返回</view>
+    <view slot="content">我的发布</view>
+  </return>
+  <view class='padding margin text-center'>
+    <view class='cu-btn bg-green lg block shadow radius margin-xl' bindtap="showModal" data-target="viewModal">
+      发布信息
+    </view>
+  </view>
+  <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
+    <view class="cu-item arrow" wx:for="{{20}}" wx:key="index">
+      <view class="content">
+        <text class="cuIcon-github text-grey"></text>
+        <text class="text-grey">{{index +1}}</text>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+<view class="DrawerClose {{modalName=='viewModal'?'show':''}}" bindtap="hideModal">
+  <text class="cuIcon-pullright"></text>
+</view>
+<scroll-view scroll-y class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
+  <form class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
+    <view class="cu-form-group margin-top">
+      <view class="title">信息名称</view>
+      <input placeholder="输入信息名称"></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">类型</view>
+      <picker bindchange="PickerChange" value="{{index}}" range="{{type}}">
+        <view class="picker">
+          {{index?type[index]:'选择类型'}}
+        </view>
+      </picker>
+    </view>
+    <view class="cu-form-group">
+		<view class="title">截至日期选择</view>
+      <picker mode="date" value="{{date}}" start="2020-02-01" end="2022-09-01" bindchange="DateChange">
+        <view class="picker">
+          {{date}}
+        </view>
+      </picker>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">地点</view>
+      <picker mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}">
+        <view class="picker">
+          {{region[0]}}，{{region[1]}}，{{region[2]}}
+        </view>
+      </picker>
+    </view>
+    <view class="cu-form-group align-start">
+      <view class="title">信息介绍</view>
+      <textarea maxlength="-1" bindinput="textareaBInput" placeholder="输入信息详细介绍"></textarea>
+    </view>
+  </form>
+</scroll-view>

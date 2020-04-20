@@ -1,5 +1,5 @@
 <view class="index-menu">
-  <navigator class="index-menu-item" wx:for="{{indexmenu}}" wx:key="{{item.url}}" url="../{{item.url}}/{{item.url}}">
+  <navigator class="index-menu-item" wx:for="{{indexmenu}}" wx:key="url" url="../content/content?title={{item.text}}&id={{item.id}}">
     <icon type="{{item.url}}" color="#3CAFD8" size="80"/>
     <text>{{item.text}}</text>
   </navigator>

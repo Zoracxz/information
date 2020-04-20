@@ -12,5 +12,12 @@
       "fileID": "cloud://test-zora0526.7465-test-zora0526-1259322272/resumes/副本出国项目流程表2019版1(1).xls",
       "title": "副本出国项目流程表2019版1(1).xls"
     }
+  },
+  {
+    "name": "remove_resume",
+    "value": {
+      "fileID": "cloud://test-zora0526.7465-test-zora0526-1259322272/resumes/follow.json",
+      "remove": true
+    }
   }
 ]

@@ -1,0 +1,24 @@
+<return bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">搜索</view>
+</return>
+<searchbar bind:searchinput="onSearchInputEvent" ></searchbar>
+
+<view class='history-list-group' wx:if="{{histories && !resources}}">
+  <view class='history-title'>
+    <view class='title'>历史记录</view>
+    <view class='clear' bindtap="onClearEvent">清除</view>
+  </view>
+  <navigator wx:for="{{histories}}" wx:key="*this" url='/pages/detail/detail?id={{item.id}}' class='history-group'>{{item.title}}</navigator>
+</view>
+
+<view class='item-list-group'>
+  <view wx:for="{{resources}}" class='item-group' wx:key="id" bindtap="onItemTapEvent" data-id="{{item.id}}" data-title="{{item.title}}">
+    <image src='{{item.pic.normal}}' class='thumbnail'></image>
+    <view class='info-group'>
+      <view class='title'>{{item.title}}</view>
+      <view class='rate-year'>{{item.rating.value}}分/{{item.year}}</view>
+    </view>
+  </view>
+</view>
+<card resources="{{resources}}" bind:historyInput="onHistoryInputEvent"></card>

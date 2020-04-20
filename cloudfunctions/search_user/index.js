@@ -23,6 +23,15 @@ exports.main = async (event, context) => {
   } //根据某个info中有哪些人投递了简历（身份为1以上的人方可查看）
 
 
-  //
+  //查找所有简历
+  else{
+    await user.where({
+      _openid: wxContext.OPENID
+    }).get().then(res => {
+      result = res.data[0].resumes
+    }).catch(err => {
+      console.error(err)
+    })
+  }
   return result
 }

@@ -1,1 +1,6 @@
 /* miniprogram/pages/resume/resume.wxss */
+.cu-list.card-menu {
+  overflow: hidden;
+  border-radius: 20rpx;
+  margin: 30rpx;
+}

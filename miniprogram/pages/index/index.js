@@ -80,26 +80,32 @@ Page({
     this.setData({
       indexmenu: [
         {
+          'id': 0,
           'text': '招聘',
           'url': 'zhaopin'
         },
         {
+          'id': 1,
           'text': '兼职',
           'url': 'jianzhi'
         },
         {
+          'id': 2,
           'text': '培训',
           'url': 'peixun'
         },
         {
+          'id': 3,
           'text': '活动',
           'url': 'huodong'
         },
         {
+          'id': 4,
           'text': '赛事',
           'url': 'saishi'
         },
         {
+          'id': 5,
           'text': '其他',
           'url': 'qita'
         }

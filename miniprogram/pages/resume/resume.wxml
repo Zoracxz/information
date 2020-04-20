@@ -19,3 +19,20 @@
     </view>
   </view>
 </view>
+<view class="cu-bar bg-white solid-bottom">
+  <view class="action">
+    <text class="cuIcon-title text-green"></text> 我的简历
+  </view>
+</view>
+<view class="cu-list menu">
+  <view class="cu-item" wx:for="{{resumes}}"  wx:key="title">
+      <view class="content">
+        <text class="cuIcon-btn text-green"></text>
+        <text class="text-grey">{{item.title}}</text>
+      </view>
+      <view class="action">
+        <button class="cu-btn round bg-red shadow" bindtap="delete_resume" data-fileID="{{item.fileID}}" data-index="{{index}}">
+          <text class="cuIcon-delete"></text> 删除</button>
+      </view>
+    </view>
+</view>

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "searchbar": "/components/searchbar/searchbar",
+    "card": "/components/card/card"
+  }
+}

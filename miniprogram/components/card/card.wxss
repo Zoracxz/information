@@ -1,0 +1,213 @@
+/* components/card/card.wxss */
+.card {
+	display: block;
+	overflow: hidden;
+}
+
+.card>.cu-item {
+	display: block;
+	background-color: var(--white);
+	overflow: hidden;
+	border-radius: 10rpx;
+	margin: 30rpx;
+}
+
+.card>.cu-item.shadow-blur {
+	overflow: initial;
+}
+
+.card.no-card>.cu-item {
+	margin: 0rpx;
+	border-radius: 0rpx;
+}
+
+.card .grid.grid-square {
+	margin-bottom: -20rpx;
+}
+
+.card.case .image {
+	position: relative;
+}
+
+.card.case .image image {
+	width: 100%;
+}
+
+.card.case .image .cu-tag {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.card.case .image .cu-bar {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	background-color: transparent;
+	padding: 0rpx 30rpx;
+}
+
+.card.case.no-card .image {
+	margin: 30rpx 30rpx 0;
+	overflow: hidden;
+	border-radius: 10rpx;
+}
+
+.card.dynamic {
+	display: block;
+}
+
+.card.dynamic>.cu-item {
+	display: block;
+	background-color: var(--white);
+	overflow: hidden;
+}
+
+.card.dynamic>.cu-item>.text-content {
+	padding: 0 30rpx 0;
+	max-height: 6.4em;
+	overflow: hidden;
+	font-size: 30rpx;
+	margin-bottom: 20rpx;
+}
+
+.card.dynamic>.cu-item .square-img {
+	width: 100%;
+	height: 200rpx;
+	border-radius: 6rpx;
+}
+
+.card.dynamic>.cu-item .only-img {
+	width: 100%;
+	height: 320rpx;
+	border-radius: 6rpx;
+}
+
+.card.article {
+	display: block;
+}
+
+.card.article>.cu-item {
+	padding-bottom: 30rpx;
+}
+
+.card.article>.cu-item .title {
+	font-size: 40rpx;
+  display: flex;
+  position: relative;
+	font-weight: 900;
+	color: var(--black);
+	line-height: 100rpx;
+	padding: 0 30rpx;
+}
+
+.card.article>.cu-item .title .text-salary {
+	font-size: 35rpx;
+	color: red;
+	height: 2em;
+	overflow: hidden;
+  position: absolute;
+  right: 0;
+  margin-right: 25rpx;
+}
+
+.card.article>.cu-item .middle{
+  display: flex;
+  padding: 0 10rpx;
+  position: relative;
+}
+
+.card.article>.cu-item .middle .text-middle{
+  font-size: 30rpx;
+	color: #888;
+	height: 2em;
+	margin: 0 20rpx
+}
+
+.card.article>.cu-item .middle .right{
+  position: absolute;
+  right: 0;
+  margin-right: 25rpx;
+}
+
+.card.article>.cu-item .content {
+	display: flex;
+	padding: 0 30rpx;
+}
+
+.card.article>.cu-item .content>image {
+	width: 110rpx;
+	height: 4em;
+	margin-right: 20rpx;
+	border-radius: 6rpx;
+}
+
+.card.article>.cu-item .content .desc {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.card.article>.cu-item .content .text-content {
+	font-size: 32rpx;
+	color: #000;
+	height: 2em;
+	overflow: hidden;
+}
+
+.text-cut {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+ image {
+	max-width: 100%;
+	display: inline-block;
+	position: relative;
+	z-index: 0;
+}
+
+.text-content {
+	line-height: 1.6;
+}
+
+.cu-tag {
+	font-size: 24rpx;
+	vertical-align: middle;
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	padding: 0rpx 16rpx;
+	height: 48rpx;
+	font-family: Helvetica Neue, Helvetica, sans-serif;
+	white-space: nowrap;
+}
+
+.cu-tag:not([class*="bg"]):not([class*="line"]) {
+	background-color: var(--ghostWhite);
+}
+
+.round {
+	border-radius: 5000rpx;
+}
+
+.cu-tag.sm {
+	font-size: 25rpx;
+	padding: 0rpx 12rpx;
+	height: 32rpx;
+}
+
+.bg-red {
+	background-color: var(--red);
+	color: var(--white);
+}
+
+.bg-red.light {
+	color: var(--red);
+	background-color: var(--redLight);
+}
+

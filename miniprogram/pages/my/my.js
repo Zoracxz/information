@@ -12,7 +12,9 @@ Page({
     logged: false,
     username: '',
     identity: '',
-    showImg: false
+    showImg: false,
+    visitTotal: 0,
+    fansTotal: 0
   },
 
   /**
@@ -54,7 +56,12 @@ Page({
       url: `/pages/resume/resume?openid=` + openid,
     })
   },
-
+  goRelease(e) {
+    let openid = e.currentTarget.dataset.openid
+    wx.navigateTo({
+      url: `/pages/release/release?openid=` + openid,
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

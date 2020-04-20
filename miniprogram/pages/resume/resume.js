@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    openid: ""
+    resumes: []
   },
 
   /**
@@ -13,11 +13,19 @@ Page({
    */
   onLoad: function (options) {
     // console.log(options)
-    this.setData({
-      openid: options.openid
+    var openid = options.openid
+    wx.cloud.callFunction({
+      name: 'search_user'
+    }).then(res => {
+      this.setData({
+        resumes: res.result
+      })
+    }).catch(err => {
+      console.log(err)
     })
   },
   upload_resume: function (e) {
+    var that = this;
     wx.chooseMessageFile({
       count: 1,
       type: "file",
@@ -33,11 +41,24 @@ Page({
           })
           return null
         }
+        for(var index in that.data.resumes){
+          if (tempFile.name == that.data.resumes[index].title){
+            wx.showToast({
+              title: "简历名称不能重复",
+              icon: 'none',
+              duration: 2000
+            })
+            return null
+          }
+        }
         wx.cloud.uploadFile({
           cloudPath: 'resumes/' + tempFile.name,
           filePath: tempFile.path,
         }).then(res => {
           console.log(res.fileID)
+          var resume = {};
+          resume.fileID = res.fileID;
+          resume.title = tempFile.name;
           wx.cloud.callFunction({
             name: 'update_user',
             data: {
@@ -45,7 +66,11 @@ Page({
               fileID: res.fileID
             }
           }).then(res => {
-            console.log(res)
+            if(res.result.stats.updated==1){
+              that.setData({
+                resumes: that.data.resumes.concat(resume)
+              })
+            }
           }).catch(err => {
             console.log(err)
           })
@@ -54,6 +79,48 @@ Page({
         })
       }
     })
+  },
+
+  delete_resume: function(e){
+    var fileID = e.currentTarget.dataset.fileid
+    var index = e.currentTarget.dataset.index
+    var that = this;
+    wx:wx.showModal({
+      content: '确定要删除该简历吗',
+      showCancel: true,
+      success: function(res) {
+        wx.showLoading({
+          title: '正在删除',
+        })
+        wx.cloud.callFunction({
+          name: 'update_user',
+          data: {
+            remove: true,
+            fileID: fileID
+          }
+        }).then(res => {
+          wx.cloud.deleteFile({
+            fileList: [fileID]
+          }).then(res => {
+            // handle success
+            console.log(res.fileList)
+          }).catch(error => {
+            // handle error
+            console.log(err)
+          })
+        }).catch(err => {
+          console.log(err)
+        })
+        wx.hideLoading();
+        var resumes = that.data.resumes;
+        resumes.splice(index,1);
+        that.setData({
+          resumes: resumes
+        })
+      }
+    })
+    
+    
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

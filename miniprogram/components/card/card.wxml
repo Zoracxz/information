@@ -1,0 +1,23 @@
+<view class="card article  no-card" wx:for="{{resources}}" wx:key="id" bindtap="onItemTapEvent" data-id="{{item.id}}" data-title="{{item.title}}">
+  <view class="cu-item shadow">
+    <view class="title">
+      <view class="text-cut">{{item.title}}</view>
+      <view class="text-salary">{{item.salary}}</view>
+    </view>
+    <view class="middle">
+      <text class="text-middle">{{item.location}}</text>
+      <text class="text-middle">{{item.frequency}}</text>
+      <text class="text-middle right">{{item.release_time}}</text>
+    </view>
+    <view class="content">
+      <image src="{{item.icon}}" mode="aspectFill"></image>
+      <view class="desc">
+        <view class="text-content">{{item.company_name}}</view>
+        <view>
+          <view class="cu-tag bg-red light sm round" wx:for="{{item.tags}}" wx:key="*this">{{item}}</view>
+          <view class="cu-tag light sm round">{{item.p_numbers}}人</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view> 
