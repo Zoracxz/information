@@ -4,7 +4,10 @@
   <view class='name bg-gradual-pink padding radius text-center shadow-blur'>
     <image src='{{avatarUrl}}'></image>
     <view class='describe'>
-      <text class='text-lg'>{{username}}</text>
+      <view>
+        <text class='text-lg'>{{username}}</text>
+        <text class="{{userInfo=='2'?'cuIcon-female':'cuIcon-male'}} margin-left-sm line-yellow"></text>
+      </view>
       <text class="margin-top-sm text-Abc">{{userInfo.introduction}}</text>
     </view>
   </view>
@@ -56,11 +59,11 @@
         <text class="text-grey">意见反馈</text>
       </button>
     </view>
-    <view wx:if="{{identity<=1}}" class='cu-item arrow' data-openid='{{openid}}' bindtap='goRecruit'>
+    <!-- <view wx:if="{{identity<=1}}" class='cu-item arrow' data-openid='{{openid}}' bindtap='goRecruit'>
       <view class='content'>
         <text class="text-grey">我要招人</text>
       </view>
-    </view>
+    </view> -->
     <view class='addApp' wx:if="{{showImg}}" bindtap='hideImg' >
       <image src='/images/add_app.png' ></image>
     </view>

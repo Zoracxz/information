@@ -10,7 +10,7 @@
 	},
 	"appid": "wx036fa002d097f9bd",
 	"projectname": "informationPlatform",
-	"libVersion": "2.10.4",
+	"libVersion": "2.11.0",
 	"compileType": "miniprogram",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},

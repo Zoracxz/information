@@ -1,4 +1,4 @@
-<view class="card article  no-card" wx:for="{{resources}}" wx:key="id" bindtap="onItemTapEvent" data-id="{{item.id}}" data-title="{{item.title}}">
+<view class="card article  no-card {{toggleDelay?'animation-slide-bottom':''}}" style="animation-delay: {{(index+1)*0.1}}s;" wx:for="{{resources}}" wx:key="index" bindtap="onItemTapEvent" data-item="{{item}}" data-title="{{item.title}}">
   <view class="cu-item shadow">
     <view class="title">
       <view class="text-cut">{{item.title}}</view>

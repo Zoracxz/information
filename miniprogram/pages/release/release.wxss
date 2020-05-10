@@ -1,3 +1,4 @@
+@import "../../colorui/animation.wxss";
 page {
   background-image: var(--gradualBlue);
   width: 100vw;

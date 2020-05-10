@@ -28,7 +28,7 @@ exports.main = async (event, context) => {
         sex: userInfos.gender,
         create_time: db.serverDate(),
         _openid: wxContext.OPENID,
-        introduction: introduction
+        introduction: userInfos.introduction
       }
     })
   } catch (e) {

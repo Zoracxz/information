@@ -75,8 +75,10 @@ Page({
       return;
     }
     let userInfo = e.detail.userInfo
+    console.log(userInfo)
     wx.setStorageSync('avatarUrl', userInfo.avatarUrl)
     wx.setStorageSync('username', userInfo.nickName)
+    wx.setStorageSync('userInfo', userInfo)
     app.globalData.avatarUrl = userInfo.avatarUrl
     app.globalData.username = userInfo.nickName
     this.cloudLogin(userInfo);

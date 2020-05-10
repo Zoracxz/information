@@ -25,7 +25,7 @@
   </view>
 </view>
 <view class="cu-list menu">
-  <view class="cu-item" wx:for="{{resumes}}"  wx:key="title">
+  <view class="cu-item {{toggleDelay?'animation-slide-bottom':''}}" style="animation-delay: {{(index+1)*0.1}}s;" wx:for="{{resumes}}"  wx:key="index">
       <view class="content">
         <text class="cuIcon-btn text-green"></text>
         <text class="text-grey">{{item.title}}</text>

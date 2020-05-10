@@ -14,7 +14,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-
+    toggleDelay: true
   },
 
   /**
@@ -22,12 +22,12 @@ Component({
    */
   methods: {
     onItemTapEvent(e){
-      var id = e.currentTarget.dataset.id;
+      let item = JSON.stringify(e.currentTarget.dataset.item);
+      item = encodeURIComponent(item)
       var title = e.currentTarget.dataset.title;
-      console.log(e)
       this.triggerEvent('searchinput', { title: title });
       wx.navigateTo({
-        url: "/pages/detail/detail?id=" + id,
+        url: "/pages/detail/detail?item=" + item,
       });
     }
   }

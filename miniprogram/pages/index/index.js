@@ -113,31 +113,19 @@ Page({
       swiperList: [{
         id: 0,
         type: 'image',
-        url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg'
+        url: 'https://img.mp.sohu.com/upload/20170807/24da8bb77cd9432e8d3e07779e7c0c2d_th.png'
       }, {
         id: 1,
         type: 'image',
-        url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84001.jpg',
+          url: 'https://img.51miz.com/preview/video/00/00/11/07/V-110749-5D4E6691.jpg',
       }, {
         id: 2,
         type: 'image',
-        url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big39000.jpg'
+          url: 'https://img0.sc115.com/uploads3/sc/psd/191118/1911181424500.jpg'
       }, {
         id: 3,
         type: 'image',
-        url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg'
-      }, {
-        id: 4,
-        type: 'image',
-        url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big25011.jpg'
-      }, {
-        id: 5,
-        type: 'image',
-        url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21016.jpg'
-      }, {
-        id: 6,
-        type: 'image',
-        url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg'
+          url: 'https://puui.qpic.cn/qqvideo_ori/0/b0777es1ork_496_280/0'
       }]
     })
   },

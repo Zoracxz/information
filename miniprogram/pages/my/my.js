@@ -62,6 +62,12 @@ Page({
       url: `/pages/release/release?openid=` + openid,
     })
   },
+  goCollection(e) {
+    let openid = e.currentTarget.dataset.openid
+    wx.navigateTo({
+      url: `/pages/collection/collection?openid=` + openid,
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

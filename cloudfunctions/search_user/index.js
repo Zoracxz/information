@@ -8,21 +8,41 @@ exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
   const db = cloud.database()
   const user = db.collection('user')
-  let option = event.option //查询条件
+  let hr_id = event.hr_id //查询条件
+  let collection = event.collection
+  let send = event.send
   let result = []
   //根据条件查找user
-  if (option != null && typeof(option) != "undefined"){
+  if (hr_id != null && typeof (hr_id) != "undefined"){
     try{
-      await user.doc(option).get().then(res => {
-        console.log(res.data)
-        result.push(res.data)
+      await user.where({
+        _openid: hr_id
+      }).get().then(res => {
+        //console.log(res.data)
+        result=res.data
       })
     } catch (e) {
       console.log(e)
     }
   } //根据某个info中有哪些人投递了简历（身份为1以上的人方可查看）
-
-
+  //查找收藏
+  else if (collection && typeof (collection) != "undefined"){
+    await user.where({
+      _openid: wxContext.OPENID
+    }).get().then(res => {
+      // console.log(res.data)
+      result = res.data[0].info_collections
+    })
+  }
+  //查找投递
+  else if (send && typeof (send) != "undefined") {
+    await user.where({
+      _openid: wxContext.OPENID
+    }).get().then(res => {
+      // console.log(res.data)
+      result = res.data[0].info_delivery
+    })
+  }
   //查找所有简历
   else{
     await user.where({

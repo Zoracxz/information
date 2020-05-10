@@ -1,0 +1,17 @@
+<return bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">我的收藏</view>
+</return>
+<view class="cu-bar bg-white solid-bottom">
+  <view class="action">
+    <text class="cuIcon-title text-green"></text> 我的收藏
+  </view>
+</view>
+<view class="cu-list menu margin-bottom-xl shadow-lg">
+  <view class="cu-item arrow {{toggleDelay?'animation-slide-bottom':''}}" style="animation-delay: {{(index+1)*0.1}}s;" wx:for="{{resources}}" wx:key="index" bindtap="toDetail" data-item="{{item}}">
+    <view class="content">
+      <text class="cuIcon-info text-blue"></text>
+      <text class="text-blue">{{item.title}}</text>
+    </view>
+  </view>
+</view>

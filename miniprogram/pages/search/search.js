@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    resources: []
   },
 
   /**
@@ -56,12 +57,15 @@ Page({
   onSearchInputEvent: function(e){
     var that = this;
     var value = e.detail.result;
-    if(!value || value === ''){
-      that.setData({
-        resources: []
-      });
-      return;
-    }
+    that.setData({
+      resources: []
+    });
+    // if(!value || value === ''){
+    //   that.setData({
+    //     resources: []
+    //   });
+    //   return;
+    // }
     //根据搜索框中的关键字获取信息
     resource.getResource(value, that)
     console.log(that.data.resources)

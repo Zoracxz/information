@@ -1,2 +1,181 @@
-<!--miniprogram/pages/detail/detail.wxml-->
-<text>miniprogram/pages/detail/detail.wxml</text>
+<return bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">职位详情</view>
+</return>
+<scroll-view class="bg-white outer">
+  <view wx:if="{{flag=='update'}}" class='flex margin text-center'>
+    <view class='cu-btn bg-green lg block shadow radius margin-xl animation-{{animation=="update"?"fade":""}}' bindtap="updateInfo" data-target="viewModal">
+      修改信息
+    </view>
+    <view class='cu-btn bg-red lg block shadow radius margin-xl animation-{{animation=="delete"?"fade":""}}' bindtap="deleteInfo">
+      删除信息
+    </view>
+  </view>
+  <view class="top">
+    <view class="title">
+      <view class="text-cut">{{info.title}}</view>
+      <view class="text-salary">{{info.salary}}</view>
+    </view>
+    <view class="middle">
+      <text class="cuIcon-location tag"></text>
+      <text class="text-middle">{{info.location}}</text>
+      <text class="text-middle">{{info.welfare}}</text>
+      <text class="text-middle">{{info.education}}</text>
+      <text class="text-middle right">{{info.release_time}}</text>
+    </view>
+  </view>
+  <view class="container">
+    <view class='name padding radius text-center shadow-blur'>
+      <image src='{{avatarUrl}}'></image>
+      <view class='describe'>
+        <text class='text-lg'>{{userInfo.user_name}}</text>
+        <text class="margin-top-sm text-Abc">{{userInfo.introduction}}</text>
+      </view>
+    </view>
+  </view>
+  <view class='readmore'>
+    <view class='overview'>
+      <view class='title-tip'>职位详情</view>
+      <view class='contents {{readmore.status ? "hidden" : ""}}'>
+        {{info.introduction}}
+      </view>
+      <!-- <view class='readmore-tip' bindtap='toggle'>{{readmore.tip}}</view> -->
+      <view class="flex">
+        <view class="bg-white flex-sub radius shadow-lg" bindtap='toggle'>
+          <image src="https://image.weilanwl.com/gif/rhomb-white.gif" mode="aspectFit" class="gif-white response" style="height:240rpx"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="container">
+    <view class="inner">
+      <view class='title-tip'>公司/学校详情</view>
+    </view>
+    <view class="company_detail">
+      <image src="{{info.icon}}" mode="aspectFill"></image>
+      <view class="desc">
+        <view class="text-content">{{info.company_name}}</view>
+        <view>
+          <view class="cu-tag bg-red light sm round" wx:for="{{info.tags}}" wx:key="*this">{{item}}</view>
+          <view class="cu-tag light sm round">{{info.p_numbers}}人</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <view class='placeholder-view'></view>
+</scroll-view>
+
+<view class="box">
+  <view class="cu-bar bg-white tabbar border buttom">
+    <button class="action" open-type="share">
+      <view class="cuIcon-share text-green"></view>
+      分享
+    </button>
+    <view class="action text-orange" bindtap="collection">
+      <view class="{{collect.status ? 'cuIcon-favorfill' : 'cuIcon-favor'}}"></view> {{collect.tip}}
+    </view>
+    <view class="action">
+      <view class="cuIcon-attention">
+        <view class="cu-tag badge">{{info.hot}}</view>
+      </view>
+      浏览人数
+    </view>
+    <view class="bg-red submit" bindtap="showModal">{{send}}</view>
+  </view>
+</view>
+
+<view class="cu-modal {{show?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">选择简历文件</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="cu-dialog">
+      <radio-group class="block" bindchange="change">
+        <view class="cu-list menu text-left">
+          <view class="cu-item" wx:for="{{resumes}}" wx:key="index">
+            <label class="flex justify-between align-center flex-sub">
+              <view class="flex-sub">{{item.title}}</view>
+              <radio class="round" value="{{item.title}},{{item.fileID}}"></radio>
+            </label>
+          </view>
+        </view>
+      </radio-group>
+    </view>
+    <view class="cu-bar bg-white justify-end">
+      <view class="action">
+        <button class="cu-btn line-green text-green" bindtap="hideModal">取消</button>
+        <button class="cu-btn bg-green margin-left" bindtap="send">确定</button>
+
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 修改信息 -->
+<view class="cu-modal drawer-modal justify-start {{modalName=='viewModal'?'show':''}}" bindtap="hideInfoModal">
+  <view class="cu-dialog basis-lg" catchtap style="top:{{CustomBar}}px;height:calc(100vh - {{CustomBar}}px)">
+    <view class="cu-list menu text-left">
+      <form class="cu-list menu card-menu margin-bottom-xl shadow-lg" bindsubmit="update">
+        <view class="cu-form-group">
+          <view class="title">修改信息名称</view>
+          <input value="{{info.title}}" name="title"></input>
+        </view>
+        <view class="cu-form-group">
+          <view class="title">福利</view>
+          <input value="{{info.welfare}}" name="welfare"></input>
+        </view>
+        <view class="cu-form-group">
+          <view class="title">工资</view>
+          <input value="{{info.salary}}" name="salary"></input>
+        </view>
+        <view class="cu-form-group">
+          <view class="title">目标学历</view>
+          <picker bindchange="TargeChange" value="{{idx}}" range="{{education}}" name="education">
+            <view class="picker">
+              {{idx?education[idx]:'选择学历'}}
+            </view>
+          </picker>
+        </view>
+        <view class="cu-form-group">
+        <view class="title">截至日期选择</view>
+          <picker mode="date" value="{{date}}" start="2020-02-01" end="2022-09-01" bindchange="DateChange" name="deadline">
+            <view class="picker">
+              {{date}}
+            </view>
+          </picker>
+        </view>
+        <view class="cu-form-group">
+          <view class="title">地点</view>
+          <picker mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}" name="location">
+            <view class="picker">
+              {{region[0]}}，{{region[1]}}，{{region[2]}}
+            </view>
+          </picker>
+        </view>
+        <view class="cu-form-group align-start">
+          <view class="title">信息介绍</view>
+          <textarea maxlength="-1" value="{{info.introduction}}" bindinput="textareaBInput" name="introduction"></textarea>
+        </view>
+        <view class="cu-form-group">
+          <view class="grid col-3 padding-sm">
+            <view class="margin-tb-xs text-center" wx:for="{{tags}}" wx:key="name">
+              <button class="cu-btn round {{item.selected?'bg-yellow':'line-yellow'}}" bindtap="tagsChange" data-index="{{index}}">{{item.name}}</button>
+            </view>
+          </view>
+        </view>
+        <view class="cu-bar search bg-white">
+          <view class="search-form round">
+            <text class="cuIcon-tag"></text>
+            <input type="text" placeholder="添加其他标签" confirm-type="send" bindconfirm="addTag"></input>
+          </view>
+        </view>
+        <view class="flex flex-direction">
+          <button class="cu-btn bg-red margin-tb-sm lg" formType="submit">修改</button>
+        </view>
+      </form>
+    </view>
+  </view>
+</view>

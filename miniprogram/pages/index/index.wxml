@@ -15,7 +15,7 @@
     </swiper-item>
   </swiper>
   <menu indexmenu="{{indexmenu}}"></menu>
-  <button bindgetuserinfo="add_user" open-type="getUserInfo">add_user</button>
+  
 </view>
 <view wx:else class="flex">
   <view class="outer"></view>

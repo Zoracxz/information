@@ -19,5 +19,15 @@
       "fileID": "cloud://test-zora0526.7465-test-zora0526-1259322272/resumes/follow.json",
       "remove": true
     }
+  },
+  {
+    "name": "send",
+    "value": {
+      "infoID": "1d1104975e9d477600938dab3c40f3b4",
+      "fileID": "cloud://test-zora0526.7465-test-zora0526-1259322272/resumes/我的简历3.docx",
+      "status": 0,
+      "title": "我的简历3.docx",
+      "flag": "投递"
+    }
   }
 ]

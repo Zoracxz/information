@@ -1,0 +1,23 @@
+[
+  {
+    "name": "add_info",
+    "value": {
+      "information": {
+        "r_numbers": 10,
+        "type": 0,
+        "deadline": "2020-05-26",
+        "salary": "7000-12000",
+        "title": "Java",
+        "education": "本科",
+        "welfare": "五险一金",
+        "tags": [
+          "J2EE",
+          "JAVA"
+        ],
+        "frequency": "4天/周",
+        "introduction": "好好工作",
+        "location": "大连市"
+      }
+    }
+  }
+]

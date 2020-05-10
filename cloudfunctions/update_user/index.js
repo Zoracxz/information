@@ -10,9 +10,11 @@ exports.main = async (event, context) => {
   const user = db.collection('user')
   const _ = db.command
   const fileID = event.fileID
-  let remove = event.remove
+  const infoID = event.infoID
+  let flag = event.flag
+  let collect = event.collect
   //保存我的简历
-  if (typeof (remove) == "undefined" && (fileID || typeof (fileID) != "undefined")){
+  if (flag == "保存简历" && (fileID && typeof (fileID) != "undefined")){
     let resumes = { "title": event.title, "fileID": fileID}
     try {
       return await user.where({
@@ -25,7 +27,7 @@ exports.main = async (event, context) => {
     } catch (e) {
       console.error(e)
     }//删除某个简历
-  } else if ((fileID || typeof (fileID) != "undefined") && remove){
+  } else if ((fileID && typeof (fileID) != "undefined") && flag == "删除简历"){
     try {
       return await user.where({
         "_openid": wxContext.OPENID
@@ -38,23 +40,64 @@ exports.main = async (event, context) => {
       })
     } catch (e) {
       console.error(e)
+    }//添加收藏
+  } else if (flag == "收藏" && (infoID && typeof (infoID) != "undefined")){
+    if(collect){//收藏
+      try {
+        return await user.where({
+          "_openid": wxContext.OPENID
+        }).update({
+          data: {
+            info_collections: _.push([infoID])
+          }
+        })
+      } catch (e) {
+        console.error(e)
+      }
+    }else{//取消收藏
+      try {
+        return await user.where({
+          "_openid": wxContext.OPENID
+        }).update({
+          data: {
+            info_collections: _.pull(infoID)
+          }
+        })
+      } catch (e) {
+        console.error(e)
+      }
     }
-  }
-  
-  else{
+  }else if (flag=="投递"){
     //开始投递时，状态为0
-    let r_delivery = { "id": event.r_id, "status": event.status, "resume_id": event.resume_id }
+    
+    let info_delivery = { "infoID": infoID, "status": event.status, "send_time": db.serverDate()}
     try {
-      return await user.where({
+      await user.where({
         "_openid": wxContext.OPENID
       }).update({
         data: {
-          r_delivery: _.push(r_delivery)
+          info_delivery: _.push(info_delivery)
         }
+      }).then(res => {
+        console.log(res)
       })
     } catch (e) {
       console.error(e)
     }
+    const send = await cloud.callFunction({
+      // 要调用的云函数名称
+      name: 'send',
+      // 传递给云函数的参数
+      data: {
+        infoID: infoID,
+        fileID: fileID,
+        title: event.title
+      }
+    })
+    return send.result
+    //修改投递状态
+  }else{
+
   }
   
 }

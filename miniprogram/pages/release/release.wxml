@@ -8,11 +8,16 @@
       发布信息
     </view>
   </view>
-  <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
-    <view class="cu-item arrow" wx:for="{{20}}" wx:key="index">
+  <view class="cu-bar bg-white solid-bottom">
+    <view class="action">
+      <text class="cuIcon-title text-green"></text> 我的发布
+    </view>
+  </view>
+  <view class="cu-list menu margin-bottom-xl shadow-lg">
+    <view class="cu-item arrow {{toggleDelay?'animation-slide-bottom':''}}" style="animation-delay: {{(index+1)*0.1}}s;" wx:for="{{resources}}" wx:key="index" bindtap="toDetail" data-item="{{item}}">
       <view class="content">
-        <text class="cuIcon-github text-grey"></text>
-        <text class="text-grey">{{index +1}}</text>
+        <text class="cuIcon-info text-blue"></text>
+        <text class="text-blue">{{item.title}}</text>
       </view>
     </view>
   </view>
@@ -21,22 +26,46 @@
   <text class="cuIcon-pullright"></text>
 </view>
 <scroll-view scroll-y class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
-  <form class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
+  <form class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg" bindsubmit="release">
     <view class="cu-form-group margin-top">
       <view class="title">信息名称</view>
-      <input placeholder="输入信息名称"></input>
+      <input placeholder="输入信息名称" name="title"></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">福利</view>
+      <input placeholder="五险一金" name="welfare"></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">工资</view>
+      <input placeholder="最低工资-最高工资" name="salary"></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">招聘人数</view>
+      <input placeholder="人数" name="r_numbers" type="number"></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">工作时间</view>
+      <input placeholder="一周工作多少天，如5天/周" name="frequency"></input>
     </view>
     <view class="cu-form-group">
       <view class="title">类型</view>
-      <picker bindchange="PickerChange" value="{{index}}" range="{{type}}">
+      <picker bindchange="PickerChange" value="{{index}}" range="{{type}}" name="type">
         <view class="picker">
           {{index?type[index]:'选择类型'}}
         </view>
       </picker>
     </view>
     <view class="cu-form-group">
+      <view class="title">目标学历</view>
+      <picker bindchange="TargeChange" value="{{idx}}" range="{{education}}" name="education">
+        <view class="picker">
+          {{idx?education[idx]:'选择学历'}}
+        </view>
+      </picker>
+    </view>
+    <view class="cu-form-group">
 		<view class="title">截至日期选择</view>
-      <picker mode="date" value="{{date}}" start="2020-02-01" end="2022-09-01" bindchange="DateChange">
+      <picker mode="date" value="{{date}}" start="2020-02-01" end="2022-09-01" bindchange="DateChange" name="deadline">
         <view class="picker">
           {{date}}
         </view>
@@ -44,7 +73,7 @@
     </view>
     <view class="cu-form-group">
       <view class="title">地点</view>
-      <picker mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}">
+      <picker mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}" name="location">
         <view class="picker">
           {{region[0]}}，{{region[1]}}，{{region[2]}}
         </view>
@@ -52,7 +81,23 @@
     </view>
     <view class="cu-form-group align-start">
       <view class="title">信息介绍</view>
-      <textarea maxlength="-1" bindinput="textareaBInput" placeholder="输入信息详细介绍"></textarea>
+      <textarea maxlength="-1" bindinput="textareaBInput" placeholder="输入信息详细介绍" name="introduction"></textarea>
+    </view>
+    <view class="cu-form-group">
+      <view class="grid col-3 padding-sm">
+        <view class="margin-tb-sm text-center" wx:for="{{tags}}" wx:key="name">
+          <button class="cu-btn round {{item.selected?'bg-yellow':'line-yellow'}}" bindtap="tagsChange" data-index="{{index}}">{{item.name}}</button>
+        </view>
+      </view>
+    </view>
+    <view class="cu-bar search bg-white">
+      <view class="search-form round">
+        <text class="cuIcon-tag"></text>
+        <input type="text" placeholder="添加其他标签" confirm-type="send" bindconfirm="addTag"></input>
+      </view>
+    </view>
+    <view class="padding flex flex-direction">
+      <button class="cu-btn bg-red margin-tb-sm lg" formType="submit">发布</button>
     </view>
   </form>
 </scroll-view>

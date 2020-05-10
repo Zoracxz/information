@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    resumes: []
+    resumes: [],
+    toggleDelay: true
   },
 
   /**
@@ -24,6 +25,7 @@ Page({
       console.log(err)
     })
   },
+  
   upload_resume: function (e) {
     var that = this;
     wx.chooseMessageFile({
@@ -63,7 +65,8 @@ Page({
             name: 'update_user',
             data: {
               title: tempFile.name,
-              fileID: res.fileID
+              fileID: res.fileID,
+              flag: "保存简历"
             }
           }).then(res => {
             if(res.result.stats.updated==1){
@@ -89,34 +92,36 @@ Page({
       content: '确定要删除该简历吗',
       showCancel: true,
       success: function(res) {
-        wx.showLoading({
-          title: '正在删除',
-        })
-        wx.cloud.callFunction({
-          name: 'update_user',
-          data: {
-            remove: true,
-            fileID: fileID
-          }
-        }).then(res => {
-          wx.cloud.deleteFile({
-            fileList: [fileID]
+        if (res.confirm){
+          wx.showLoading({
+            title: '正在删除',
+          })
+          wx.cloud.callFunction({
+            name: 'update_user',
+            data: {
+              fileID: fileID,
+              flag: "删除简历"
+            }
           }).then(res => {
-            // handle success
-            console.log(res.fileList)
-          }).catch(error => {
-            // handle error
+            wx.cloud.deleteFile({
+              fileList: [fileID]
+            }).then(res => {
+              // handle success
+              console.log(res.fileList)
+            }).catch(error => {
+              // handle error
+              console.log(err)
+            })
+          }).catch(err => {
             console.log(err)
           })
-        }).catch(err => {
-          console.log(err)
-        })
-        wx.hideLoading();
-        var resumes = that.data.resumes;
-        resumes.splice(index,1);
-        that.setData({
-          resumes: resumes
-        })
+          wx.hideLoading();
+          var resumes = that.data.resumes;
+          resumes.splice(index, 1);
+          that.setData({
+            resumes: resumes
+          })
+        }
       }
     })
     

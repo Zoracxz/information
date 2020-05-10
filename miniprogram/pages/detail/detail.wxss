@@ -1,1 +1,196 @@
 /* miniprogram/pages/detail/detail.wxss */
+@import "../../colorui/animation.wxss";
+.outer{
+  padding: 30rpx;
+  font-size: 30rpx;
+}
+
+.top {
+  padding-top: 20rpx;
+  position: relative;
+  align-items: center;
+  min-height: 100rpx;
+  justify-content: space-between;
+  border-bottom: 1rpx solid #ddd;
+}
+
+.top .title {
+	font-size: 50rpx;
+  display: flex;
+  position: relative;
+	font-weight: 900;
+	color: var(--black);
+	line-height: 100rpx;
+	padding: 10rpx 30rpx;
+}
+
+.top .title .text-salary {
+	font-size: 40rpx;
+	color: red;
+	height: 2em;
+	overflow: hidden;
+  position: absolute;
+  right: 0;
+  margin-right: 25rpx;
+}
+
+.top .middle{
+  display: flex;
+  padding: 0 10rpx;
+  position: relative;
+}
+
+.top .middle .text-middle{
+  font-size: 30rpx;
+	color: #888;
+	height: 2em;
+	margin: 0 20rpx
+}
+
+.top .middle .right{
+  position: absolute;
+  right: 0;
+  margin-right: 25rpx;
+}
+
+.top .middle .tag {
+  padding: 9rpx 0rpx 30rpx 15rpx;
+}
+
+.text-cut {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+.container {
+  border-bottom: 1rpx solid #ddd;
+}
+
+.container .name {
+  /* background: linear-gradient(#f79642, #f5798d); */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  text-align: center;
+  padding: 30rpx;
+}
+
+.name image {
+  height: 140rpx;
+  width: 140rpx;
+  border-radius: 50%;
+  animation: avator linear 16s infinite normal;
+}
+
+.container .name .describe {
+  /* background: linear-gradient(#f79642, #f5798d); */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 30rpx;
+}
+
+/* 防止底部操作遮挡 */
+
+.placeholder-view {
+  width: 100%;
+  height: 100rpx;
+}
+/* 底部操作栏 */
+.box {
+  margin: 20rpx 0;
+}
+
+.box .buttom {
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+
+}
+
+.inner {
+  padding-top: 50rpx;
+  padding-left: 30rpx;
+}
+/* 查看更多 */
+
+.readmore{
+  padding: 50rpx 0rpx;
+  border-bottom: 1rpx solid #ddd;
+}
+
+.overview {
+  padding: 0 30rpx;
+}
+
+.title-tip {
+  font-size: 40rpx;
+  margin-bottom: 22rpx;
+  font-weight: 900;
+}
+
+.contents {
+  font-size: 35rpx;
+  color: #888;
+}
+/* 超出3行隐藏多余部分并且显示省略号 */
+.hidden{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+/* 公司详情 */
+.company_detail {
+	display: flex;
+	padding: 35rpx 30rpx;
+}
+
+.company_detail>image {
+	width: 110rpx;
+	height: 4em;
+	margin-right: 20rpx;
+	border-radius: 6rpx;
+}
+
+.company_detail .desc {
+	flex: 1;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.company_detail .text-content {
+	font-size: 32rpx;
+	color: #000;
+	height: 2em;
+	overflow: hidden;
+}
+/* 修改框 */
+.cu-modal.drawer-modal .cu-dialog {
+	height: 100%;
+	min-width: 600rpx;
+	border-radius: 0;
+	margin: initial;
+	transition-duration: 0.3s;
+}
+
+.cu-form-group {
+	background-color: var(--white);
+	padding: 1rpx 30rpx;
+	display: flex;
+	align-items: center;
+	min-height: 75rpx;
+	justify-content: space-between;
+}
+.cu-bar {
+	display: flex;
+	position: relative;
+	align-items: center;
+	min-height: 80rpx;
+	justify-content: space-between;
+}

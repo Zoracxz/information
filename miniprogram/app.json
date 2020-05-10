@@ -8,6 +8,7 @@
     "pages/addCompany/addCompany",
     "pages/search/search",
     "pages/content/content",
+    "pages/collection/collection",
     "pages/detail/detail"
   ],
   "window": {

@@ -1,4 +1,5 @@
 // pages/send/send.js
+var resource = require("../../utils/resource.js")
 const app = getApp();
 Page({
 
@@ -9,7 +10,9 @@ Page({
     TabCur: 0,
     tabList: [],
     identity: 0,
-    r_delivery: []
+    resources: [],
+    info_delivery: [],
+    ids: []
   },
 
   /**
@@ -42,27 +45,51 @@ Page({
         ]
       })
     }
-    this.fetchData()
+    this.fetchData();
   },
   tabSelect(e) {
     this.setData({
+      resources: [],
       TabCur: e.currentTarget.dataset.id
     })
+    this.fetchData();
   },
 
   fetchData: function(e){
+    var that = this;
+    let ids = [];
     wx.cloud.callFunction({
       // 声明调用的函数名
       name: 'search_send',
       data: {
-        status: this.data.TabCur,
-        _openid: app.globalData.openid
+        status: that.data.TabCur
       }
     }).then(res => {
-      let r_delivery = res.result.data[0].r_delivery
-      this.setData({
-        r_delivery: r_delivery
-      })
+      if (res.result.data.length > 0) {
+        let info_delivery = res.result.data[0].info_delivery
+        // console.log(info_delivery)
+        that.setData({
+          info_delivery: info_delivery
+        })
+        for (var index in info_delivery) {
+          let item = info_delivery[index]
+          ids.push(item.infoID)
+          that.setData({
+            ids: ids
+          })
+        }
+        wx.cloud.callFunction({
+          name: 'search_info',
+          data: {
+            ids: that.data.ids
+          }
+        }).then(res => {
+          console.log(res)
+          resource.getResource(res.result, that)
+        }).catch(err => {
+          console.log(err)
+        })
+      }
     }).catch(err => {
       console.log(err)
     })
@@ -71,7 +98,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**

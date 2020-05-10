@@ -1,4 +1,5 @@
 /* components/card/card.wxss */
+@import "../../colorui/animation.wxss";
 .card {
 	display: block;
 	overflow: hidden;
