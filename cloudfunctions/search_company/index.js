@@ -15,7 +15,7 @@ exports.main = async (event, context) => {
   if (id && typeof (id) != "undefined"){
     await company.doc(id).get().then(res => {
       console.log(res.data)
-      result.push(res.data)
+      result = res.data
     }).catch(err => {
       console.log(err)
     })

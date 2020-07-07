@@ -103,15 +103,15 @@ Page({
               flag: "删除简历"
             }
           }).then(res => {
-            wx.cloud.deleteFile({
-              fileList: [fileID]
-            }).then(res => {
-              // handle success
-              console.log(res.fileList)
-            }).catch(error => {
-              // handle error
-              console.log(err)
-            })
+            // wx.cloud.deleteFile({
+            //   fileList: [fileID]
+            // }).then(res => {
+            //   // handle success
+            //   console.log(res.fileList)
+            // }).catch(error => {
+            //   // handle error
+            //   console.log(err)
+            // })
           }).catch(err => {
             console.log(err)
           })

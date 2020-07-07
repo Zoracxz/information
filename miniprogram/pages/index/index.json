@@ -2,7 +2,8 @@
   "usingComponents": {
     "tabbar": "/components/tabbar/tabbar",
     "searchbar": "/components/searchbar/searchbar",
-    "menu": "/components/menu/menu"
+    "menu": "/components/menu/menu",
+    "card": "/components/card/card"
   },
   "enablePullDownRefresh": true,
   "onReachBottomDistance": 100

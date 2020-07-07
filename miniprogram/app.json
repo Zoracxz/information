@@ -9,7 +9,9 @@
     "pages/search/search",
     "pages/content/content",
     "pages/collection/collection",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/company/company",
+    "pages/comment/comment"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

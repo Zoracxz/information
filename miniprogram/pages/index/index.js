@@ -1,3 +1,6 @@
+import { RecommendinfosService } from '../../utils/index.js'
+var resource = require("../../utils/resource.js")
+
 Page({
 
   /**
@@ -8,6 +11,8 @@ Page({
     identity: 0,
     cardCur: 0,
     swiperList: [],
+    recommend_result: [],
+    resources: [],
   },
 
   /**
@@ -22,6 +27,7 @@ Page({
     }
     // 初始化towerSwiper 传已有的数组名即可
     this.towerSwiper('swiperList');
+
   },
 
   /**
@@ -77,7 +83,8 @@ Page({
     
   },
   fetchData: function () {
-    this.setData({
+    var that = this
+    that.setData({
       indexmenu: [
         {
           'id': 0,
@@ -128,21 +135,45 @@ Page({
           url: 'https://puui.qpic.cn/qqvideo_ori/0/b0777es1ork_496_280/0'
       }]
     })
+    wx.cloud.callFunction({
+      name: 'search_user',
+      data: {
+        recommend: true
+      }
+    }).then(res => {
+      var result = res.result
+      var data = [];
+      for (var index in result){
+        if (result[index].info_delivery.length != 0){
+          var info_delivery = result[index].info_delivery
+          for (var i = 0; i < info_delivery.length; ++i){
+            var item = {};
+            item.userId = result[index]._id
+            item.infosId = info_delivery[i].infoID
+            data.push(item)
+          }
+        }
+      }
+      // console.log(data)
+      var userId = wx.getStorageSync('userInfo')._id
+      var n = 3
+      const recommendinfosService = new RecommendinfosService(data, userId, n)
+      const recommend_result = recommendinfosService.start()
+      // console.log(recommend_result)
+      wx.cloud.callFunction({
+        name: 'search_info',
+        data: {
+          ids: recommend_result
+        }
+      }).then(res => {
+        // console.log(res)
+        resource.getResource(res.result, that)
+      }).catch(err => {
+        console.log(err)
+      })
+      
+    })
   },
-  add_user: function(res) {
-    console.log(res.detail.userInfo)
-    var userInfos = res.detail.userInfo
-    // wx.cloud.callFunction({
-    //   name: "add_user",
-    //   data: {
-    //     userInfos: userInfos,
-    //     introduction: "test",
-    //   },
-    // }).then(res => {
-    //   console.log(res.result)
-    // }).catch(console.error)
-  },
-
   // cardSwiper
   cardSwiper(e) {
     this.setData({

@@ -1,6 +1,6 @@
 <return bgColor="bg-gradual-blue" isBack="{{true}}">
   <view slot="backText">返回</view>
-  <view slot="content">职位详情</view>
+  <view slot="content">信息详情</view>
 </return>
 <scroll-view class="bg-white outer">
   <view wx:if="{{flag=='update'}}" class='flex margin text-center'>
@@ -21,7 +21,7 @@
       <text class="text-middle">{{info.location}}</text>
       <text class="text-middle">{{info.welfare}}</text>
       <text class="text-middle">{{info.education}}</text>
-      <text class="text-middle right">{{info.release_time}}</text>
+      <text class="text-middle right">{{info.deadline}}</text>
     </view>
   </view>
   <view class="container">
@@ -35,14 +35,14 @@
   </view>
   <view class='readmore'>
     <view class='overview'>
-      <view class='title-tip'>职位详情</view>
+      <view class='title-tip'>信息介绍</view>
       <view class='contents {{readmore.status ? "hidden" : ""}}'>
         {{info.introduction}}
       </view>
       <!-- <view class='readmore-tip' bindtap='toggle'>{{readmore.tip}}</view> -->
       <view class="flex">
         <view class="bg-white flex-sub radius shadow-lg" bindtap='toggle'>
-          <image src="https://image.weilanwl.com/gif/rhomb-white.gif" mode="aspectFit" class="gif-white response" style="height:240rpx"></image>
+          <image src="https://image.weilanwl.com/gif/rhomb-white.gif" mode="aspectFit" class="gif-white response" style="height:150rpx"></image>
         </view>
       </view>
     </view>
@@ -51,13 +51,20 @@
     <view class="inner">
       <view class='title-tip'>公司/学校详情</view>
     </view>
-    <view class="company_detail">
+    <view class="company_detail" bindtap="toCompany">
       <image src="{{info.icon}}" mode="aspectFill"></image>
       <view class="desc">
         <view class="text-content">{{info.company_name}}</view>
         <view>
           <view class="cu-tag bg-red light sm round" wx:for="{{info.tags}}" wx:key="*this">{{item}}</view>
-          <view class="cu-tag light sm round">{{info.p_numbers}}人</view>
+          <view class="cu-tag light sm round">{{info.r_numbers}}人</view>
+        </view>
+      </view>
+    </view>
+    <view class="cu-list menu card-menu margin-bottom-xl shadow-lg radius">
+      <view class='cu-item arrow' bindtap='goComment'>
+        <view class='content'>
+          <text class="text-grey">查看评论</text>
         </view>
       </view>
     </view>

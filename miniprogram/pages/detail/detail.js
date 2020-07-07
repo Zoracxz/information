@@ -170,7 +170,45 @@ Page({
     })
   },
   update: function (e){
-
+    var that = this;
+    console.log(e)
+    var value = e.detail.value
+    var information = {};
+    information.title = value.title
+    information.education = this.data.education[value.education]
+    information.welfare = value.welfare
+    information.location = value.location[1]
+    information.introduction = value.introduction
+    information.salary = value.salary
+    information.deadline = value.deadline
+    var tags = [];
+    for (var index in this.data.tags) {
+      if (this.data.tags[index].selected) {
+        tags.push(this.data.tags[index].name)
+      }
+    }
+    information.tags = tags
+    wx.cloud.callFunction({
+      name: 'update_info',
+      data: {
+        infoID: this.data.info.id,
+        information: information
+      }
+    }).then(res => {
+      console.log(res)
+      wx.showToast({
+        title: '更新成功',
+        duration: 1000,
+        mask: true,
+        success: function (res) {
+          that.hideInfoModal()
+        },
+        fail: function (res) { },
+        complete: function (res) { },
+      })
+    }).catch(err => {
+      console.log(err)
+    })
   },
   updateInfo: function(e) {
     this.fade("update")
@@ -179,7 +217,30 @@ Page({
     })
   },
   deleteInfo: function () {
-    this.fade("delete")
+    let that = this
+    wx: wx.showModal({
+      content: '确定要删除当前信息吗',
+      showCancel: true,
+      success: function (res) {
+        if (res.confirm) {
+          wx.showLoading({
+            title: '正在删除',
+          })
+          wx.cloud.callFunction({
+            name: 'update_info',
+            data: {
+              infoID: that.data.info.id,
+              flag: "删除信息"
+            }
+          }).then(res => {
+            wx.hideLoading();
+          }).catch(err => {
+            console.log(err)
+          })
+        }
+      }
+    })
+
   },
   fade(e) {
     var anmiaton = e
@@ -203,6 +264,17 @@ Page({
     wx.cloud.callFunction({
       name: 'search_user'
     }).then(res => {
+      if(res.result.length == 0){
+        wx.showToast({
+          title: '您还没有可投递简历，请先上传简历',
+          icon: 'none',
+          success: function(e){
+            wx.navigateTo({
+              url: "/pages/resume/resume",
+            })
+          }
+        })
+      }
       this.setData({
         resumes: res.result
       })
@@ -257,6 +329,11 @@ Page({
     this.setData({
       modalName: null
     })
+  },
+  toCompany: function(e){
+    wx.navigateTo({
+      url: "/pages/company/company?id=" + this.data.info.c_id,
+    });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -313,6 +390,13 @@ Page({
         status: !status,
         tip: status ? '收起' : '查看更多'
       }
+    })
+  },
+  goComment: function(e){
+    let infoID = this.data.info.id
+    let title = this.data.info.title
+    wx.navigateTo({
+      url: `/pages/comment/comment?infoID=` + infoID + `&title=` + title,
     })
   },
   /**

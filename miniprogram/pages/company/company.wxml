@@ -1,0 +1,38 @@
+<!--pages/company/company.wxml-->
+<return bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">公司详情</view>
+</return>
+<view class="top bg-white">
+  <view class="title container">
+    <view class="text-cut">{{company.company_name}}</view>
+    <view>
+      <view class="company_detail">
+        <image src="{{company.icon}}" mode="aspectFit"></image>
+        <view class="cu-tag badge">{{company.is_certification?'V':'未认证'}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="middle">
+    <view  wx:for="{{company.location}}" wx:key="index">
+      <text class="cuIcon-location tag"></text>
+      <text class="text-middle">{{item}}</text>
+    </view>
+    <text class="text-middle">{{company.type}}</text>
+    <text class="text-middle right">规模：{{company.p_numbers}}人</text>
+  </view>
+</view>
+<view class='readmore bg-white'>
+  <view class='overview'>
+    <view class='title-tip'>公司介绍</view>
+    <view class='contents {{readmore.status ? "hidden" : ""}}'>
+      {{company.introduction}}
+    </view>
+    <!-- <view class='readmore-tip' bindtap='toggle'>{{readmore.tip}}</view> -->
+    <view class="flex">
+      <view class="bg-white flex-sub radius shadow-lg" bindtap='toggle'>
+        <image src="https://image.weilanwl.com/gif/rhomb-white.gif" mode="aspectFit" class="gif-white response" style="height:150rpx"></image>
+      </view>
+    </view>
+  </view>
+</view>

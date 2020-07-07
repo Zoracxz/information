@@ -1,0 +1,17 @@
+/* pages/comment/comment.wxss */
+/* 底部操作栏 */
+.box {
+  margin: 20rpx 0;
+}
+
+.box .buttom {
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+
+}
+
+.inner {
+  padding-top: 50rpx;
+  padding-left: 30rpx;
+}

@@ -7,7 +7,7 @@
     <view class="middle">
       <text class="text-middle">{{item.location}}</text>
       <text class="text-middle">{{item.frequency}}</text>
-      <text class="text-middle right">{{item.release_time}}</text>
+      <text class="text-middle right">{{item.deadline}}</text>
     </view>
     <view class="content">
       <image src="{{item.icon}}" mode="aspectFill"></image>
@@ -15,7 +15,7 @@
         <view class="text-content">{{item.company_name}}</view>
         <view>
           <view class="cu-tag bg-red light sm round" wx:for="{{item.tags}}" wx:key="*this">{{item}}</view>
-          <view class="cu-tag light sm round">{{item.p_numbers}}人</view>
+          <view class="cu-tag light sm round">{{item.r_numbers}}人</view>
         </view>
       </view>
     </view>

@@ -14,6 +14,7 @@ exports.main = async (event, context) => {
   let title = event.title
   let page = event.page
   let release = event.release
+  let manage = event.manage
   let ids = event.ids
   const limit = 10
   let result = []
@@ -33,7 +34,7 @@ exports.main = async (event, context) => {
       pipeline: $.pipeline()
         .match(_.expr($.in(['$$hr_id', '$hr_ids'])))
         .project({
-          _id: 0,
+          _id: 1,
           icon: 1,
           company_name: 1,
           type: 1,
@@ -60,7 +61,7 @@ exports.main = async (event, context) => {
       pipeline: $.pipeline()
         .match(_.expr($.in(['$$hr_id', '$hr_ids'])))
         .project({
-          _id: 0,
+          _id: 1,
           icon: 1,
           company_name: 1,
           type: 1,
@@ -84,7 +85,7 @@ exports.main = async (event, context) => {
       pipeline: $.pipeline()
         .match(_.expr($.in(['$$hr_id', '$hr_ids'])))
         .project({
-          _id: 0,
+          _id: 1,
           icon: 1,
           company_name: 1,
           type: 1,
@@ -108,7 +109,7 @@ exports.main = async (event, context) => {
       pipeline: $.pipeline()
         .match(_.expr($.in(['$$hr_id', '$hr_ids'])))
         .project({
-          _id: 0,
+          _id: 1,
           icon: 1,
           company_name: 1,
           type: 1,
@@ -119,6 +120,18 @@ exports.main = async (event, context) => {
     }).end().then(res => {
       result = res.list
     }).catch(err => console.error(err))
+  } else if (manage && typeof (manage) != "undefined"){
+    await informations.where({
+      hr_id: wxContext.OPENID,
+      resumes: _.exists(true)
+    }).field({
+      _id: true,
+      resumes: true,
+      title: true,
+      hr_id: true,
+    }).get().then(res => {
+      result = res
+      }).catch(err => console.error(err))
   }
   else{
     //默认查询，按最近发布排列

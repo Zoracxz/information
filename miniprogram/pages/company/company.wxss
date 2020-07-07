@@ -1,0 +1,97 @@
+/* pages/company/company.wxss */
+.top {
+  padding-top: 20rpx;
+  position: relative;
+  align-items: center;
+  min-height: 100rpx;
+  justify-content: space-between;
+  border-bottom: 1rpx solid #ddd;
+}
+
+.top .title {
+	font-size: 50rpx;
+  display: flex;
+  position: relative;
+	font-weight: 900;
+	color: var(--black);
+	line-height: 100rpx;
+	padding: 10rpx 30rpx;
+}
+
+.top .title .text-salary {
+	font-size: 40rpx;
+	color: red;
+	height: 2em;
+	overflow: hidden;
+  position: absolute;
+  right: 0;
+  margin-right: 25rpx;
+}
+
+.top .middle{
+  display: flex;
+  padding: 0 10rpx;
+  position: relative;
+}
+
+.top .middle .text-middle{
+  font-size: 35rpx;
+	color: #888;
+	height: 2em;
+	margin: 0 20rpx
+}
+
+.top .middle .right{
+  position: absolute;
+  right: 0;
+  margin-right: 25rpx;
+}
+
+.top .middle .tag {
+  padding: 9rpx 0rpx 30rpx 15rpx;
+}
+
+.container {
+  border-bottom: 1rpx solid #ddd;
+  margin: 20rpx
+}
+
+.company_detail {
+	display: flex;
+	padding: 10rpx 10rpx;
+}
+
+.company_detail>image {
+	width: 200rpx;
+	height: 2em;
+	margin-right: 20rpx;
+	border-radius: 6rpx;
+}
+/* 公司介绍 */
+.readmore{
+  padding: 50rpx 0rpx;
+  border-bottom: 1rpx solid #ddd;
+}
+
+.overview {
+  padding: 0 30rpx;
+}
+
+.title-tip {
+  font-size: 40rpx;
+  margin-bottom: 22rpx;
+  font-weight: 900;
+}
+
+.contents {
+  font-size: 35rpx;
+  color: #888;
+}
+/* 超出3行隐藏多余部分并且显示省略号 */
+.hidden{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}

@@ -32,7 +32,7 @@ Component({
       }
     },
     goSend: (e) => {
-      if (e.currentTarget.dataset.hi != 1) {
+      if (e.currentTarget.dataset.hi != 1 || e.currentTarget.dataset.hi != 3) {
         wx.redirectTo({
           url: "/pages/send/send"
         })

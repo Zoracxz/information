@@ -13,8 +13,6 @@ Page({
     username: '',
     identity: '',
     showImg: false,
-    visitTotal: 0,
-    fansTotal: 0
   },
 
   /**
@@ -66,6 +64,11 @@ Page({
     let openid = e.currentTarget.dataset.openid
     wx.navigateTo({
       url: `/pages/collection/collection?openid=` + openid,
+    })
+  },
+  goManage(e){
+    wx.navigateTo({
+      url: `/pages/send/send?manage=true`,
     })
   },
   /**

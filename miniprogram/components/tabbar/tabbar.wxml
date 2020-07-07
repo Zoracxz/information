@@ -4,12 +4,16 @@
       <icon type="shouye" color="{{Index==0?'#000000':'#b1b1b1'}}" size="45"/>
       <text class="1" style="color:{{Index==0?'#000000':'#b1b1b1'}}">首页</text>
     </view>
-    <view class="item-right" bindtap="goSend" data-hi="{{Index}}">
+    <view wx:if="{{Index!=3}}" class="item-right" bindtap="goSend" data-hi="{{Index}}">
       <icon type="toudi" color="{{Index==1?'#000000':'#b1b1b1'}}" size="45"/>
       <text class="2">投递</text>
     </view>
-     <view class="item-right"  bindtap="goMy" data-hi="{{Index}}">
-        <icon type="wode" color="{{Index==2?'#000000':'#b1b1b1'}}" size="45"/>
-        <text class="3" style="color:{{Index==2?'#000000':'#b1b1b1'}}">我的</text>
-      </view>
+    <view wx:else class="item-right" bindtap="goSend" data-hi="{{Index}}">
+      <icon type="toudi" color="{{Index==3?'#000000':'#b1b1b1'}}" size="45"/>
+      <text class="2">管理</text>
+    </view>
+    <view class="item-right"  bindtap="goMy" data-hi="{{Index}}">
+      <icon type="wode" color="{{Index==2?'#000000':'#b1b1b1'}}" size="45"/>
+      <text class="3" style="color:{{Index==2?'#000000':'#b1b1b1'}}">我的</text>
+    </view>
 </view>

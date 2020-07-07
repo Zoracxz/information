@@ -13,6 +13,8 @@ exports.main = async (event, context) => {
   const infoID = event.infoID
   const title = event.title
   let refresh = event.refresh
+  let information = event.information
+  let flag = event.flag
   let result = []
   //自增浏览量
   if (refresh && typeof (infoID) != "undefined"){
@@ -35,6 +37,29 @@ exports.main = async (event, context) => {
       // console.log(res.data)
       result = res
     })
+  } else if (information && typeof (information) != "undefined"){
+    await informations.doc(infoID).update({
+      data: {
+        "update_time": db.serverDate(),
+        "deadline": new Date(information.deadline),
+        "salary": information.salary,
+        "title": information.title,
+        "education": information.education,
+        "welfare": information.welfare,
+        "tags": information.tags,
+        "introduction": information.introduction,
+        "location": information.location
+      },
+    }).then(res => {
+      // console.log(res.data)
+      result = res
+    })
+  } else if ((infoID && typeof (infoID) != "undefined") && flag == "删除信息") {
+    try {
+      return await informations.doc(infoID).remove()
+    } catch (e) {
+      console.error(e)
+    }//添加收藏
   }
   return result
 }

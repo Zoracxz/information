@@ -4,7 +4,7 @@
 </return>
 <view class="cu-bar bg-white solid-bottom">
   <view class="action">
-    <text class="cuIcon-title text-orange "></text> 上传简历附件
+    <text class="cuIcon-title text-orange "></text> 上传简历附件(命名：手机号+姓名+简历名)
   </view>
 </view>
 <view class="cu-list menu card-menu card-menu margin-top">

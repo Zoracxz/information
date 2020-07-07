@@ -3,13 +3,44 @@
     <text>职翼</text>
   </view>
 </return>
-<tabbar Index="1"></tabbar>
+<tabbar Index="{{Index}}"></tabbar>
 <scroll-view scroll-x class="bg-white nav text-center">
   <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{5}}" wx:key="*this" bindtap="tabSelect" data-id="{{index}}">
     {{tabList[index]}}
   </view>
 </scroll-view>
-<scroll-view scroll-y class="scrollPage">
+<scroll-view wx:if="{{Index==1}}" scroll-y class="scrollPage">
   <card resources="{{resources}}"></card>
 </scroll-view>
-
+<!-- 管理简历部分 -->
+<view wx:if="{{Index==3}}" class="VerticalBox">
+  <scroll-view class="VerticalNav nav " scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}" style="height:calc(100vh - 375rpx)">
+    <view class="cu-item {{index==v_TabCur?'text-green cur':''}}" wx:for="{{list}}" wx:key="id" bindtap='v_tabSelect' data-id="{{index}}" style="padding: 0">
+      {{item.name}}
+    </view>
+  </scroll-view>
+  <scroll-view class="VerticalMain" scroll-y scroll-with-animation style="height:calc(100vh - 375rpx)" scroll-into-view="main-{{MainCur}}" bindscroll="VerticalMain">
+    <view class="padding-top padding-lr" wx:for="{{list}}" wx:key="id" id="main-{{index}}">
+      <view class='cu-bar solid-bottom bg-white'>
+        <view class='action'>
+          <text class='cuIcon-title text-green'></text> {{item.name}} </view>
+      </view>
+      <view class="cu-list menu">
+        <view class="cu-item {{toggleDelay?'animation-slide-bottom':''}}" style="animation-delay: {{(index+1)*0.1}}s;" wx:for="{{item.resumes}}"  wx:key="index">
+            <view class="content">
+              <text class="cuIcon-btn text-green"></text>
+              <text class="text-grey">{{item.title}}</text>
+            </view>
+            <view class="action">
+              <button wx:if="{{TabCur==0}}" class="cu-btn round bg-green shadow" bindtap="update_resume" data-fileID="{{item.fileID}}" data-status="1" data-title="{{item.title}}">
+                <text class="cuIcon-down"></text> 下载</button>
+              <button wx:elif="{{TabCur==1}}" class="cu-btn round bg-green shadow" bindtap="update_resume" data-fileID="{{item.fileID}}" data-status="2">
+                <text class="cuIcon-appreciate"></text> 录用</button>
+              <button wx:else class="cu-btn round bg-red shadow" bindtap="update_resume" data-fileID="{{item.fileID}}" data-status="3">
+                <text class="cuIcon-close"></text> 拒绝</button>
+            </view>
+          </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

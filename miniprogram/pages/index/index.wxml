@@ -5,7 +5,7 @@
 </return>
 <searchbar isnavigator="{{true}}"></searchbar>
 
-<view class='container' wx:if="{{identity<=1}}">
+<view wx:if="{{identity<=1}}">
   <swiper class="card-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
     <swiper-item wx:for="{{swiperList}}" wx:key="id" class="{{cardCur==index?'cur':''}}">
       <view class="swiper-item">
@@ -17,10 +17,24 @@
   <menu indexmenu="{{indexmenu}}"></menu>
   
 </view>
-<view wx:else class="flex">
+<view class="container">
+  <view class="cu-bar bg-white">
+    <view class="action">
+      <text class="cuIcon-title text-green"></text>
+      <text class="text-xl text-bold">推荐</text>
+    </view>
+  </view>
+  <scroll-view scroll-y class="scrollPage">
+    <card resources="{{resources}}"></card>
+  </scroll-view>
+</view>
+
+
+<!-- <view wx:else class="flex">
   <view class="outer"></view>
   <button class="flex-sub padding-sm margin-xs  cu-btn round line-blue lg">退出登录</button>
   <button class="flex-sub padding-sm margin-xs  cu-btn round bg-blue lg" bindtap="enterCompany">加入公司</button>
-</view>
+</view> -->
+
 
 <tabbar Index="0"></tabbar>

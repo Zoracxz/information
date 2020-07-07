@@ -1,0 +1,42 @@
+<!-- 评论组件 Component -->
+<view class="commentComponent extra-class bg-white">
+  <!-- 填写评论区域 -->
+  <view class="writeCommentWrap">
+    <text class="comment">精彩评论</text>
+  </view>
+  <block wx:if="{{commentList.length>0}}">
+    <!-- 评论模块 -->
+    <block wx:for="{{commentList}}" wx:for-item="item" wx:for-index="index" wx:key="idx">
+      <view class="commentItem" catchtap="_goToReply" data-contentid="{{item._id}}" data-replyid="{{item._id}}" data-battle-tag="{{item.user_name}}" data-title="{{item.content}}">
+        <view class="titleWrap">
+          <image class="logo" src="{{item.avatar||'/../../pages/my/user-inlogin.png'}}"></image>
+          <view class="authorWrap">
+            <view class="author">{{item.user_name}}</view>
+            <view class="time">{{item.create_time}}</view>
+          </view>
+        </view>
+        <view class="text">
+          {{item.content}}
+        </view>
+      </view>
+      <!-- 评论的评论 -->
+      <block wx:for="{{item.comment_responses}}" wx:for-item="itemReply" wx:for-index="indexReply" wx:key="idxReply">
+        <view class="commentItem commentItemReply" catchtap="_goToReply" data-contentid="{{itemReply._id}}" data-replyid="{{item._id}}" data-battle-tag="{{itemReply.user_name}}" data-title="{{itemReply.content}}">
+          <view class="titleWrap">
+            <image class="logo" src="{{itemReply.avatar||'/../../pages/my/user-inlogin.png'}}"></image>
+            <view class="authorWrap">
+              <view class="author">{{itemReply.user_name}}</view>
+              <view class="time">{{itemReply.create_time}}</view>
+            </view>
+          </view>
+          <view class="text">
+            {{itemReply.content}}
+          </view>
+        </view>
+      </block>
+    </block>
+    <!-- <block wx:if="{{isOver}}">
+      <view class="more">评论加载完成</view>
+    </block> -->
+  </block>
+</view>

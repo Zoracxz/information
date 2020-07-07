@@ -1,0 +1,19 @@
+<return bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">评论</view>
+</return>
+<view class='wrap'>
+    <view class='header'>
+        <view class='header-icon {{type=="album"?"square":""}}'>
+            <image src='{{avatar}}'></image>
+        </view>
+        <view class='header-text flex flex-direction'>
+            <text class="cu-btn lg">{{title}}  {{user_name}}</text>
+        </view>
+    </view>
+    <view class='feedback-cont'>
+        <textarea auto-focus="true" value="{{replyName}}" maxlength="200" bindinput="textareaCtrl" placeholder-style="color:#999;" placeholder="评论" />
+        <view class='fontNum'>{{content.length}}/200</view>
+    </view>
+    <view class='feedback-btn' bindtap='commentSubmit'>提交</view>
+</view>

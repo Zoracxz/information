@@ -8,25 +8,22 @@ exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
   const db = cloud.database()
   const user = db.collection("user")
-  let status = event.status
+  let status = parseInt(event.status)
   let result = []
-  if (status == 0){
-    result = await user.where({
-      _openid: wxContext.OPENID
-    }).field({
-      info_delivery: true
-    }).get()
-  }else{
-    try {
-      result = await user.where({
-        _openid: wxContext.OPENID,
-        info_delivery: {
-          status: status
-        }
-      }).get()
-    } catch (e) {
-      console.log(e)
+  result = await user.where({
+    _openid: wxContext.OPENID
+  }).field({
+    info_delivery: true
+  }).get()
+  result = result.data[0].info_delivery
+  if (status > 0){
+    let res = [];
+    for(var i=0;i<result.length;i++){
+      if(result[i].status == status){
+        res.push(result[i])
+      }
     }
+    result = res;
   }
   
   return result
